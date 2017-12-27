@@ -15,8 +15,8 @@ result_dir = 'results'
 # Theano config.
 
 theano_flags                                = dict()
-theano_flags['device']                      = 'cuda'            # New gpuarray backend.
-#theano_flags['device']                      = 'gpu'             # Old CUDA backend.
+#theano_flags['device']                      = 'cuda'            # New gpuarray backend.
+theano_flags['device']                      = 'gpu'             # Old CUDA backend.
 theano_flags['force_device']                = 'True'            # Use GPU or die -- never fall back to CPU.
 theano_flags['dnn.enabled']                 = 'True'            # Use cuDNN or die -- never fall back to custom convolution ops.
 theano_flags['floatX']                      = 'float32'         # Use float32 for everything by default.
@@ -99,7 +99,7 @@ loss = dict(                                # Loss function:
 # Configuration overrides for individual experiments.
 
 # Section 6.3: "High-resolution image generation using CelebA-HQ dataset"
-if 1:
+if 0:
     run_desc = 'celeb-hq-1024x1024'
     dataset = dict(h5_path='celeba-hq-1024x1024.h5', resolution=1024, max_labels=0, mirror_augment=True, max_images=30000)
 
@@ -169,7 +169,7 @@ if 0:
         G.update(use_pixelnorm=False)
 
 # Section 6.5: "CIFAR10 inception scores"
-if 0:
+if 1:
     run_desc = 'cifar-10-32x32'
     dataset = dict(h5_path='cifar-10-32x32.h5', resolution=32, max_labels=0, mirror_augment=False)
     train.update(lod_training_kimg=400, lod_transition_kimg=400, rampup_kimg=0, minibatch_overrides={})
