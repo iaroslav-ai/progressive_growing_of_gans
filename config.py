@@ -103,6 +103,17 @@ if 0:
     run_desc = 'celeb-hq-1024x1024'
     dataset = dict(h5_path='celeba-hq-1024x1024.h5', resolution=1024, max_labels=0, mirror_augment=True, max_images=30000)
 
+# Custom stuff!
+if 1:
+    run_desc = 'l_gen'
+    h5_path = 'l.h5'
+    mirror_augment = True
+
+    dataset = dict(h5_path=h5_path, resolution=256, max_labels=0, mirror_augment=mirror_augment)
+    train.update(lod_training_kimg=800, lod_transition_kimg=800, total_kimg=20000, minibatch_overrides={})
+    G.update(fmap_base=4096)
+    D.update(fmap_base=4096)
+
 # Section 6.4: "LSUN results"
 if 0:
     categories = ['airplane', 'bedroom', 'bicycle', 'bird', 'boat', 'bottle', 'bridge', 'bus', 'car', 'cat',
@@ -169,7 +180,7 @@ if 0:
         G.update(use_pixelnorm=False)
 
 # Section 6.5: "CIFAR10 inception scores"
-if 1:
+if 0:
     run_desc = 'cifar-10-32x32'
     dataset = dict(h5_path='cifar-10-32x32.h5', resolution=32, max_labels=0, mirror_augment=False)
     train.update(lod_training_kimg=400, lod_transition_kimg=400, rampup_kimg=0, minibatch_overrides={})
